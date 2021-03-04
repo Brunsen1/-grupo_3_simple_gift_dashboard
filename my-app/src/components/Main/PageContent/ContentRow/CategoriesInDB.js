@@ -2,11 +2,11 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 
 function CategoriesInDB() {
-	const [categories, setCategories] = useState([]);
+	const [count, setCount] = useState({});
 	useEffect(() => {
-		fetch('http://localhost:3000/api/categories')
+		fetch('http://localhost:3000/api/products')
 			.then((res) => res.json())
-			.then((data) => setCategories(data.data.categories));
+			.then((res) => setCount(res.meta.countByCategory));
 	}, []);
 
 	return (
@@ -19,10 +19,12 @@ function CategoriesInDB() {
 				</div>
 				<div className="card-body">
 					<div className="row">
-						{categories.map((category) => (
+						{Object.entries(count).map((category) => (
 							<div className="col-lg-6 mb-4">
 								<div className="card bg-info text-white shadow">
-									<div className="card-body">{category.name}</div>
+									<div className="card-body">
+										{category[0] + ': ' + category[1]}
+									</div>
 								</div>
 							</div>
 						))}
