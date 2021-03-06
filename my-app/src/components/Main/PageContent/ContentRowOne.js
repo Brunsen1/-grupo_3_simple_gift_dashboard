@@ -12,8 +12,7 @@ function ContentRowOne() {
         <AllProductsInDB/>
         <AmountOfUsersInDB/>
          
-
-   
+  
         </div>
 
     );
